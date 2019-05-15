@@ -10,10 +10,45 @@ var list_messages = {
     name: [ ]
 };
 
+var list_userID = [];
+   
+var number = 1;
+
+
+// generating new id for every user
+function getID() {
+    var temp = number;
+    number++;
+    return (temp + 1000);
+}
+
 // viewed at http://localhost:8080
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../index.html'));
 });
+
+app.post('/add', function (req, res) {
+
+    console.log("it is ok");
+    var id = getID();
+     console.log(id);
+     res.json({ "userID": id });
+     list_userID[list_userID.length] = id;
+     console.log(list_userID);
+   
+});
+app.post('/id', function (req, res) {
+
+    console.log("send id");
+    var userID;
+   // for (i = 0; i < list_userID.ID.length; i++) {
+        userID = JSON.stringify({ list_userID });
+        res.json(userID);
+        console.log(userID);
+   // }
+
+});
+
 
 
 app.listen(8080);
