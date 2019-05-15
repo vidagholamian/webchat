@@ -46,7 +46,7 @@ wss.on('connection', function (ws) {
         console.log(data);
          var username = jsonObject.name;
          var message = jsonObject.message;
-         con.log("username");
+         console.log("username");
          list_messages.msg[list_messages.msg.length]= message;
          list_messages.name[list_messages.name.length] = username;
          console.log(list_messages);
