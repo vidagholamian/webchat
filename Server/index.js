@@ -27,18 +27,9 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../index.html'));
 });
 
-app.post('/add', function (req, res) {
 
-    console.log("it is ok");
-    var id = getID();
-     console.log(id);
-     res.json({ "userID": id });
-     list_userID[list_userID.length] = id;
-     console.log(list_userID);
-   
-});
+
 app.post('/id', function (req, res) {
-
     console.log("send id");
     var userID;
    // for (i = 0; i < list_userID.ID.length; i++) {
@@ -50,9 +41,18 @@ app.post('/id', function (req, res) {
 });
 
 
+app.post('/add', function (req, res) {
+    console.log("it is ok");
+    var id = getID();
+     console.log(id);
+     res.json({ "userID": id });
+     list_userID[list_userID.length] = id;
+     console.log(list_userID);
+   
+});
+
 
 app.listen(8080);
-
 
 var server = require('ws').Server;
 var wss = new server({ port: 5001 });
@@ -82,6 +82,7 @@ wss.on('connection', function (ws) {
          var username = jsonObject.name;
          var message = jsonObject.message;
          console.log("username");
+        //add msg and username to messageList
          list_messages.msg[list_messages.msg.length]= message;
          list_messages.name[list_messages.name.length] = username;
          console.log(list_messages);
