@@ -1,10 +1,18 @@
 var ws = new WebSocket('ws://localhost:5001');
 
+// generating id
+/*function getID(){
+	var http=new XMLHttpRequest();
+	http.open("GET" , 'http://localhost:8080/getID' , false);
+	http.send(null);
+	console.log(http.responseText);
+	var obj =JSON.parse(http.responseText);
+	var id =obj["id"];
+	console.log(id);
+	reurn id;
+	
+}*/
 
-// generating new id for every user
-function randomID() {
-    return Math.floor(Math.random() * 1e11);
-}
 
 //set default name for nickname in ex scenarios
 var Nickname = "JOHN DOE";
@@ -14,7 +22,7 @@ ws.onopen = function () {
     console.log('Successfully connected to the server');
 
     // get user ID if it's available or generating one
-    var userID = localStorage.getItem("userID") || randomID();
+    var userID = localStorage.getItem("userID");
     //save userID in local storage of browser 
     localStorage.setItem("userID", userID);
 
@@ -24,7 +32,27 @@ ws.onopen = function () {
     } else {
         // when there isn't any userID available get new Nickname from user 
         Nickname = prompt("What is your Nickname ?");
-
+		
+		
+		$.ajax({
+           type: 'POST',
+           url: "http://localhost:8080",
+		   data: JSON.stringify(SendInfoasJSONfile),
+		   contentType: "application/json;harset=utf-8",
+		   traditional: true,
+           success: function (receivedData) {
+               if (localStorage.getItem(userID + "NAME")) {
+				    Nickname = localStorage.getItem(userID + "NAME");
+                   location.reload(true);
+               } else {
+                   alert("Cannot add to list !");
+				}
+			}
+       });
+		
+		
+		
+		
         console.log("User nickname with userID " + userID + " is ", Nickname);
 
         //set Nickname user in localstorage of browser 
