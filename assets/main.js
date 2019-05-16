@@ -1,17 +1,16 @@
 var ws = new WebSocket('ws://localhost:5001');
 
 // generating id
-/*function getID(){
+function getID(){
 	var http=new XMLHttpRequest();
 	http.open("GET" , 'http://localhost:8080/getID' , false);
 	http.send(null);
-	console.log(http.responseText);
-	var obj =JSON.parse(http.responseText);
-	var id =obj["id"];
+	console.log(data);
+	var obj =JSON.parse(data);
+	var id =obj.id;
 	console.log(id);
 	reurn id;
 	
-}*/
 
 
 //set default name for nickname in ex scenarios
@@ -36,7 +35,7 @@ ws.onopen = function () {
 		
 		$.ajax({
            type: 'POST',
-           url: "http://localhost:8080",
+           url: "http://localhost:8080/getID",
 		   data: JSON.stringify("name":" send data"),
 		   contentType: "application/json;harset=utf-8",
 		   traditional: true,
