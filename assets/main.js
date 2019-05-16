@@ -45,12 +45,16 @@ ws.onopen = function () {
 				    Nickname = localStorage.getItem(userID + "NAME");
                    location.reload(true);
                } else {
-                   alert("Cannot add to list !");
+                   alert("user id is null !");
 				}
 			}
        });
-		
-		
+	    
+	    
+	    /*app.get('/', function(req, res) {
+		res.sendFile(path.join(__dirname + '/../index.html'));
+		});
+		*/
 		
 		
         console.log("User nickname with userID " + userID + " is ", Nickname);
