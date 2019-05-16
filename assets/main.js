@@ -37,7 +37,7 @@ ws.onopen = function () {
 		$.ajax({
            type: 'POST',
            url: "http://localhost:8080",
-		   data: JSON.stringify(SendInfoasJSONfile),
+		   data: JSON.stringify("name":" send data"),
 		   contentType: "application/json;harset=utf-8",
 		   traditional: true,
            success: function (receivedData) {
